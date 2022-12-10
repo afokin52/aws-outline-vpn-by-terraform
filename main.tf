@@ -19,7 +19,7 @@ resource "aws_instance" "outline" {
 }
 resource "null_resource" "copy_config" {
   provisioner "local-exec" {
-    command = "scp -o StrictHostKeyChecking=no -i ${var.key_folder}/key.pem ubuntu@${aws_instance.outline.public_ip}:/tmp/outline-install-details.txt ${var.config_path}/outline-install-details-${aws_instance.outline.public_ip}.txt"
+    command = "scp -o StrictHostKeyChecking=no -o LogLevel=quiet -i ${var.key_folder}/key.pem ubuntu@${aws_instance.outline.public_ip}:/tmp/outline-install-details.txt ${var.config_path}/outline-install-details-${aws_instance.outline.public_ip}.txt"
 
   }
   provisioner "local-exec" {
